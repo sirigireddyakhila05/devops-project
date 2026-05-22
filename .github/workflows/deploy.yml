@@ -23,3 +23,8 @@ jobs:
           cd backend
           node app.js &
           sleep 5
+           
+      - name: Trigger Render Deploy
+        run: curl "$RENDER_DEPLOY_HOOK"
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
