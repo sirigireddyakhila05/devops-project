@@ -7,6 +7,6 @@ app.get("/", (req, res) => {
     res.send("🚀 DevOps Project is Live on Cloud!");
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
     console.log("Server running on port " + PORT);
 });
