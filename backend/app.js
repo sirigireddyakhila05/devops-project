@@ -1,0 +1,1 @@
+console.log("🚀 DevOps Project Running Successfully in VS Code");
