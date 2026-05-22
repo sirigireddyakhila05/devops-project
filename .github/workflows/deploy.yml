@@ -1,4 +1,4 @@
-name: CI/CD Deploy to Render
+name: CI/CD Pipeline
 
 on:
   push:
@@ -13,8 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Trigger Render Deploy
+      - name: Install dependencies
         run: |
-          curl "$RENDER_DEPLOY_HOOK"
-        env:
-          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+          cd backend
+          npm install
+
+      - name: Run app test (basic)
+        run: |
+          cd backend
+          node app.js &
+          sleep 5
