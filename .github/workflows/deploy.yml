@@ -1,4 +1,4 @@
-name: Deploy Node App to Render
+name: CI/CD Deploy to Render
 
 on:
   push:
@@ -13,12 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
-      - name: Install dependencies
+      - name: Trigger Render Deploy
         run: |
-          cd backend
-          npm install
+          curl "$RENDER_DEPLOY_HOOK"
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
